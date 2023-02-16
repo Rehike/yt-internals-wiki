@@ -1,0 +1,2 @@
+# wiki
+The Rehike Wiki

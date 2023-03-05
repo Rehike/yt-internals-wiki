@@ -56,14 +56,14 @@ a:hover, a:focus
 {
     width: 20px;
     height: 20px;
-    background: no-repeat url("/img/spinner.gif");
+    background: no-repeat url("img/spinner.gif");
 }
 
 @media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)
 {
     .spinner-icon
     {
-        background: no-repeat url("/img/spinner-2x.png");
+        background: no-repeat url("img/spinner-2x.png");
         background-size: 20px 20px;
     }
 }
@@ -153,7 +153,7 @@ a:hover, a:focus
 {
     width: 81px;
     height: 30px;
-    background: no-repeat url("/img/logo.png");
+    background: no-repeat url("img/logo.png");
     background-size: 81px 30px;
 }
 

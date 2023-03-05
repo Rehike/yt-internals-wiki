@@ -58,7 +58,7 @@ window.addEventListener("hashchange", async (e) => {
     });
 
     document.querySelector(".guide-item.selected").classList.remove("selected");
-    let item = await waitForElm(`.guide-item-link[href="${location.hash}"]`);
+    let item = await waitForElm(`.guide-item-link[href=$"${location.hash}"]`);
     item.parentElement.classList.add("selected");
 });
 
@@ -69,6 +69,6 @@ if (location.hash.length > 2)
     html = await html.text();
     document.querySelector("#content").innerHTML = html;
 
-    let item = await waitForElm(`.guide-item-link[href="${location.hash}"]`);
+    let item = await waitForElm(`.guide-item-link[href$="${location.hash}"]`);
     item.parentElement.classList.add("selected");
 })();

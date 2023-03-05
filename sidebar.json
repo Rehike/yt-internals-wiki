@@ -1,0 +1,24 @@
+{
+    "sections": [
+        {
+            "title": "The basics",
+            "id": "basics",
+            "pages": [
+                {
+                    "title": "An introduction to InnerTube",
+                    "id": "introduction"
+                }
+            ]
+        },
+        {
+            "title": "Endpoints",
+            "id": "endpoints",
+            "pages": [
+                {
+                    "title": "browse",
+                    "id": "browse"
+                }
+            ]
+        }
+    ]
+}

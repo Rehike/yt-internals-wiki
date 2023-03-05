@@ -57,9 +57,12 @@ window.addEventListener("hashchange", async (e) => {
         progress.style.width = "0%";
     });
 
-    document.querySelector(".guide-item.selected").classList.remove("selected");
-    let item = await waitForElm(`.guide-item-link[href=$"${location.hash}"]`);
-    item.parentElement.classList.add("selected");
+    if (document.querySelector(".guide-item.selected") != null)
+    {
+        document.querySelector(".guide-item.selected").classList.remove("selected");
+    }
+    
+    document.querySelector(`.guide-item-link[href$="${location.hash}"]`).parentElement.classList.add("selected");
 });
 
 if (location.hash.length > 2)

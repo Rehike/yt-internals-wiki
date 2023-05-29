@@ -18,6 +18,14 @@ async function waitForElm(q)
     return document.querySelector(q);
 }
 
+function renderPageMarkdown(mdDoc)
+{
+    var markdownit = window.markdownit({
+        html: true
+    });
+    return markdownit.render(mdDoc);
+}
+
 (async () => {
     let sidebar = await fetch("sidebar.json");
     let response = await sidebar.json();
@@ -37,8 +45,8 @@ window.addEventListener("hashchange", async (e) => {
     progress.style.width = "75%";
     progress.style.opacity = "1";
 
-    let response = await fetch("pages/" + page + ".html");
-    let html = await response.text();
+    let response = await fetch("pages/" + page + ".md");
+    let responseText = await response.text();
 
     if (response.status >= 400)
     {
@@ -46,7 +54,7 @@ window.addEventListener("hashchange", async (e) => {
     }
     else
     {
-        document.querySelector("#content").innerHTML = html;
+        document.querySelector("#content").innerHTML = renderPageMarkdown(responseText);
     }
 
     progress.style.transitionDuration = ".5s";

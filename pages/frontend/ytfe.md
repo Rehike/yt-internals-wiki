@@ -26,8 +26,6 @@ Work started on [a replacement for YTFE in 2014 using Google's Polymer library](
 
 ## JS source code leak
 
-Between 2010 and 2013, YouTube leaked debug builds of their JS source code on their [static image server](#!/backend/static_image_server).^[https://archive.org/details/yt-debug-js] These source files are processed through Closure Compiler in whitespace-only mode with pretty-printed formatting, which made them easily readable for debugging purposes. While these files lack comments, the original symbol names and code flow is kept intact, so the code is still much more readable than the compiled versions that are regularly accessible.
-
-However, the HTML5 video player source code did not leak in a similar way, possibly indicating that it used a different build mechanism for copy-protection purposes.
+Between 2010 and 2013, YouTube leaked debug builds of their JS source code on their [static image server](#!/backend/static_image_server).^[https://archive.org/details/yt-debug-js] These source files are processed through Closure Compiler in whitespace-only mode with pretty-printed formatting, which made them easily readable for debugging purposes. While these files lack comments, the original symbol names and code flow is kept intact, so the code is still much more readable than the compiled versions that are regularly accessible. This includes source code for the generic website controls and the early HTML5 video player.
 
 ## References

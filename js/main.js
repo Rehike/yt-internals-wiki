@@ -45,7 +45,7 @@ window.addEventListener("hashchange", async (e) => {
     progress.style.width = "75%";
     progress.style.opacity = "1";
 
-    let response = await fetch("//github.com/Rehike/yt-internals-wiki/raw/main/pages/" + page + ".md");
+    let response = await fetch("pages/" + page + ".md");
     let responseText = await response.text();
 
     if (response.status >= 400)
@@ -76,7 +76,7 @@ window.addEventListener("hashchange", async (e) => {
 if (location.hash.length > 2)
 (async () => {
     let page = (PAGENAME_REGEX.exec(location.hash))[1];
-    let html = await fetch("//github.com/Rehike/yt-internals-wiki/raw/main/pages/" + page + ".md");
+    let html = await fetch("pages/" + page + ".md");
     html = await html.text();
     document.querySelector("#content").innerHTML = html;
 

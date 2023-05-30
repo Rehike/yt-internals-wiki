@@ -26,7 +26,7 @@ function renderPageMarkdown(mdDoc)
     return markdownit.render(mdDoc);
 }
 
-async function downloadAndRefreshPage(showProgressBar = false) {
+async function downloadAndRefreshPage(url, showProgressBar = false) {
     let page = (PAGENAME_REGEX.exec(e.newURL))[1];
     
     if (showProgressBar)
@@ -80,9 +80,9 @@ async function downloadAndRefreshPage(showProgressBar = false) {
     }
 })();
 
-window.addEventListener("hashchange", async e => await downloadAndRefreshPage(true));
+window.addEventListener("hashchange", async e => await downloadAndRefreshPage(e.newURL, true));
 
 if (location.hash.length > 2)
 (async () => {
-    downloadAndRefreshPage();
+    downloadAndRefreshPage(location.hash);
 })();

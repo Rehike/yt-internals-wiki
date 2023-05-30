@@ -66,7 +66,7 @@ async function downloadAndRefreshPage(url, showProgressBar = false) {
         document.querySelector(".guide-item.selected").classList.remove("selected");
     }
     
-    if (document.querySelector(`.guide-item-link[href$="${location.hash}"]`)
+    if (document.querySelector(`.guide-item-link[href$="${location.hash}"]`))
     {
         document.querySelector(`.guide-item-link[href$="${location.hash}"]`).parentElement.classList.add("selected");
     }

@@ -33,7 +33,7 @@ function renderPageMarkdown(mdDoc)
     if (response)
     {
         document.querySelector("#guide").innerHTML =
-        nunjucks.render("sidebar.html", response);
+            nunjucks.render("sidebar.html", response);
     }
 })();
 
@@ -45,7 +45,7 @@ window.addEventListener("hashchange", async (e) => {
     progress.style.width = "75%";
     progress.style.opacity = "1";
 
-    let response = await fetch("pages/" + page + ".md");
+    let response = await fetch("//github.com/Rehike/yt-internals-wiki/raw/main/pages/" + page + ".md");
     let responseText = await response.text();
 
     if (response.status >= 400)

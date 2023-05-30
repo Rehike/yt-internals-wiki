@@ -68,6 +68,16 @@ a:hover, a:focus
     }
 }
 
+code {
+    background: #f1f1f1;
+}
+
+pre {
+    padding: .25em;
+    border-radius: 2px;
+    background: #f1f1f1;
+}
+
 #progress
 {
     z-index: 2147483647;
@@ -155,6 +165,19 @@ a:hover, a:focus
     height: 30px;
     background: no-repeat url("img/logo.png");
     background-size: 81px 30px;
+}
+
+.vertical-rule {
+    width: 1px;
+    height: 30px;
+    background: #e8e8e8;
+    margin: 0 10px;
+}
+
+.wiki-name {
+    font-size: 20px;
+    font-weight: 500;
+    color: #666;
 }
 
 #page

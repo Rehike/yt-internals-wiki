@@ -18,12 +18,79 @@ async function waitForElm(q)
     return document.querySelector(q);
 }
 
-function renderPageMarkdown(mdDoc)
+function getEditUrl()
+{
+    return "https://github.com/Rehike/yt-internals-wiki/tree/main/pages/" + location.hash.replace("#!/", "") + ".md";
+}
+
+function renderTemplate(name, context = null)
+{
+    return new Promise((resolve, reject) => {
+        function handleResult(err, res)
+        {
+            if (err)
+            {
+                reject(err);
+            }
+            else
+            {
+                resolve(res);
+            }
+        }
+
+        if (context != null)
+        {
+            nunjucks.render(name, context, handleResult);
+        }
+        else
+        {
+            nunjucks.render(name, handleResult);
+        }
+    });
+}
+
+function updatePageTitle()
+{
+    if (document.querySelector(".wiki-page-header .title"))
+    {
+        var title = document.querySelector(".wiki-page-header .title");
+        document.title = title.textContent + " - YouTube Internals Wiki";
+    }
+    else
+    {
+        document.title = "YouTube Internals Wiki";
+    }
+}
+
+async function renderPageMarkdown(mdDoc)
 {
     var markdownit = window.markdownit({
-        html: true
-    });
-    return markdownit.render(mdDoc);
+        html: true,
+        linkify: true
+    })
+        .use(window.markdownitFootnote);
+
+    markdownit.renderer.rules.footnote_block_open = () => 
+        "<section class=\"footnotes\">" +
+        "<ol>";
+
+    var mdHtml = markdownit.render(mdDoc);
+
+    var domParser = (new DOMParser()).parseFromString(mdHtml, "text/html").body;
+
+    console.log(domParser);
+
+    if (domParser.children[0].tagName == "H1")
+    {
+        domParser.children[0].outerHTML = await renderTemplate(
+            "wiki_page_header.html", {
+                title: domParser.children[0].textContent,
+                editUrl: getEditUrl()
+            }
+        );
+    }
+
+    return domParser.outerHTML;
 }
 
 async function downloadAndRefreshPage(url, showProgressBar = false) {
@@ -47,8 +114,10 @@ async function downloadAndRefreshPage(url, showProgressBar = false) {
     }
     else
     {
-        document.querySelector("#content").innerHTML = renderPageMarkdown(responseText);
+        document.querySelector("#content").innerHTML = await renderPageMarkdown(responseText);
     }
+
+    updatePageTitle();
     
     if (showProgressBar)
     {
@@ -72,20 +141,27 @@ async function downloadAndRefreshPage(url, showProgressBar = false) {
     }
 }
 
-(async () => {
+async function loadSidebar() {
     let sidebar = await fetch("sidebar.json");
     let response = await sidebar.json();
 
     if (response)
     {
         document.querySelector("#guide").innerHTML =
-            nunjucks.render("sidebar.html", response);
+            await renderTemplate("sidebar.html", response);
     }
-})();
+}
 
-window.addEventListener("hashchange", async e => await downloadAndRefreshPage(e.newURL, true));
+async function main()
+{
+    loadSidebar();
 
-if (location.hash.length > 2)
-(async () => {
-    downloadAndRefreshPage(location.hash);
-})();
+    if (location.hash.length > 2)
+    {
+        downloadAndRefreshPage(location.hash);
+    }
+
+    window.addEventListener("hashchange", async e => await downloadAndRefreshPage(e.newURL, true));
+}
+
+main();

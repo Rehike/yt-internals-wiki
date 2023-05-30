@@ -2,9 +2,12 @@
 <html lang="en">
     <head>
         <title>YouTube Internals Wiki</title>
-        <link rel="stylesheet" href="roboto.css">
-        <link rel="stylesheet" href="main.css">
-        <link rel="shortcut icon" href="img/icon.png" type="image/png">
+        <link rel="stylesheet" href="/roboto.css">
+        <link rel="stylesheet" href="/main.css">
+        <link rel="shortcut icon" href="/img/icon.png" type="image/png">
+        <!-- template prefetching -->
+        <link rel="prefetch" href="/template/sidebar.html">
+        <link rel="prefetch" href="/template/wiki_page_header.html">
     </head>
     <body>
         <div id="progress" style="width: 0%;">
@@ -25,13 +28,17 @@
             </div>
             <div id="content-container">
                 <div id="content">
-                    <h1>Welcome!</h1>
-                    <p>Click a page on the sidebar to get started.</p>
+                    <div class="spinner">
+                        <span class="sprite spinner-icon" title="Loading icon"></span>
+                        <span class="spinner-label">Loading...</span>
+                    </div>
                 </div>
             </div>
         </div>
-        <script src="js/markdown-it.min.js"></script>
-        <script src="js/nunjucks.js"></script>
-        <script src="js/main.js"></script>
+        <script src="/js/yaml.min.js"></script>
+        <script src="/js/markdown-it.min.js"></script>
+        <script src="/js/markdown-it-footnote.min.js"></script>
+        <script src="/js/nunjucks.js"></script>
+        <script src="/js/main.js"></script>
     </body>
 </html>

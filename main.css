@@ -41,7 +41,7 @@ a:hover, a:focus
 
 .sprite
 {
-    display: block;
+    display: inline-block;
 }
 
 .spinner
@@ -70,12 +70,19 @@ a:hover, a:focus
 
 code {
     background: #f1f1f1;
+    font: Consolas, monospace;
+    border-radius: 2px;
+    padding: 1px 3px;
 }
 
 pre {
-    padding: .25em;
+    padding: .35em;
     border-radius: 2px;
     background: #f1f1f1;
+}
+
+pre > code {
+    padding: 0;
 }
 
 #progress
@@ -272,4 +279,100 @@ pre {
     box-shadow: 0 1px 2px rgb(0 0 0 / 10%);
     margin: 10px 100px;
     padding: 15px;
+    line-height: 1.5em;
+}
+
+.button
+{
+    display: inline-block;
+    height: 28px;
+    border: 1px solid #d3d3d3;
+    background: #f8f8f8;
+    color: #333;
+    padding: 0 10px;
+    outline: 0;
+    font-weight: 500;
+    font-size: 11px;
+    white-space: nowrap;
+    word-wrap: normal;
+    line-height: normal;
+    vertical-align: middle;
+    cursor: pointer;
+    border-radius: 2px;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.05);
+}
+
+.button:hover
+{
+    border-color: #c6c6c6;
+    background: #f0f0f0;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.10);
+}
+
+.button:active
+{
+    border-color: #c6c6c6;
+    background: #e9e9e9;
+    box-shadow: inset 0 1px 0 #ddd;
+}
+
+a.button
+{
+    text-decoration: none;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+a.button::after
+{
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+}
+
+.button-icon-wrapper
+{
+    margin-right: 6px;
+}
+
+.button-icon-wrapper .sprite
+{
+    display: inline-block;
+    vertical-align: middle;
+    opacity: 0.5
+}
+
+.button:hover .button-icon-wrapper .sprite
+{
+    opacity: 0.6
+}
+
+.button:active .button-icon-wrapper .sprite
+{
+    opacity: 0.8
+}
+
+.github-logo
+{
+    width: 15px;
+    height: 15px;
+    background: no-repeat url("img/gt-button-icon-github.png");
+}
+
+.wiki-page-header
+{
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+}
+
+.wiki-page-header .title
+{
+    font-weight: 500;
+    font-size: 26px;
+}
+
+.wiki-page-header .edit-button
+{
+    float: right;
 }

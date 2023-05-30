@@ -76,7 +76,7 @@ window.addEventListener("hashchange", async (e) => {
 if (location.hash.length > 2)
 (async () => {
     let page = (PAGENAME_REGEX.exec(location.hash))[1];
-    let html = await fetch("pages/" + page + ".html");
+    let html = await fetch("//github.com/Rehike/yt-internals-wiki/raw/main/pages/" + page + ".md");
     html = await html.text();
     document.querySelector("#content").innerHTML = html;
 

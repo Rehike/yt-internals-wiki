@@ -27,7 +27,7 @@ function renderPageMarkdown(mdDoc)
 }
 
 async function downloadAndRefreshPage(url, showProgressBar = false) {
-    let page = (PAGENAME_REGEX.exec(e.newURL))[1];
+    let page = (PAGENAME_REGEX.exec(url))[1];
     
     if (showProgressBar)
     {
@@ -66,7 +66,10 @@ async function downloadAndRefreshPage(url, showProgressBar = false) {
         document.querySelector(".guide-item.selected").classList.remove("selected");
     }
     
-    document.querySelector(`.guide-item-link[href$="${location.hash}"]`).parentElement.classList.add("selected");
+    if (document.querySelector(`.guide-item-link[href$="${location.hash}"]`)
+    {
+        document.querySelector(`.guide-item-link[href$="${location.hash}"]`).parentElement.classList.add("selected");
+    }
 }
 
 (async () => {
